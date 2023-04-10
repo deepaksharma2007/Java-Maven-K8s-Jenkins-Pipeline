@@ -42,4 +42,6 @@ pipeline {
            sh "sudo docker run -d --name myjavapp -p 8080:8080  deepak2007/auto-java-tomcat-jenkins:${BUILD_TAG} "  
    		}
   	}
+    }
+}
 
