@@ -1,11 +1,37 @@
-#!/bin/bash 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myjavapp
+  name: myjavapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myjavapp
+  template:
+    metadata:
+      labels:
+        app: myjavapp
+    spec:
+      containers:
+      - image: deepak2007/auto-java-tomcat-jenkins:${BUILD_TAG}
+        imagePullPolicy: Always
+        name: myweb
 
-deploy=sudo kubectl get deploy | awk 'NR==2 {print $1}'
-
-if [ "$deploy" = "myjavapp" ] ;
-then 
-        echo "deployment exists"
-else 
-        sudo kubectl create deploy myjavapp --image=deepak2007/auto-java-tomcat-jenkins:${BUILD_TAG}
-fi
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: myjavapp
+  name: myweb
+spec:
+  ports:
+  - nodePort: 32000
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: myjavapp
+  type: NodePort
