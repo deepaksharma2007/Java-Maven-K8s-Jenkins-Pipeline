@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+deploy=sudo kubectl get deploy | awk 'NR==2 {print $1}'
+
+if [ "$deploy" = "myjavapp" ] ;
+then 
+        echo "deployment exists"
+else 
+        sudo kubectl create deploy myjavapp --image=deepak2007/auto-java-tomcat-jenkins:${BUILD_TAG}
+fi
+
