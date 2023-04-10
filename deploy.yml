@@ -1,29 +1,4 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: myjavapp
-  name: myjavapp
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: myjavapp
-  template:
-    metadata:
-      labels:
-        app: myjavapp
-    spec:
-      containers:
-      - image: deepak2007/auto-java-tomcat-jenkins:${BUILD_TAG}
-        imagePullPolicy: Always
-        name: myweb
-      env:
-        - name: BUILD_TAG
-          value: "v1"
-      command: [ "sh", "-c", "echo $BUILD_TAG" ]
 
----
 apiVersion: v1
 kind: Service
 metadata:
