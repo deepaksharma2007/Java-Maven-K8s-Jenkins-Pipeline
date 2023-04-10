@@ -7,7 +7,7 @@ pipeline {
 
         stage('SCM stage'){
           steps{
-           git 'https://github.com/vimallinuxworld13/jenkins-docker-maven-java-webapp.git'
+           git 'https://github.com/deepaksharma2007/Java-Maven-K8s-Jenkins-Pipeline.git'
            echo 'Code downloaded....' 
         }
     }
