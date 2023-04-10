@@ -71,7 +71,8 @@ pipeline {
              sshagent(['PROD_ENV_PASS']) {
             // some block
                  sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.241.192  sudo wget https://raw.githubusercontent.com/deepaksharma2007/Java-Maven-K8s-Jenkins-Pipeline/master/script.sh "
-                 sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.241.192 sudo ./script.sh"
+                 sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.241.192 sudo export BUILD_TAG=${BUILD_TAG}"
+                 sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.241.192 sudo bash script.sh  '${BUILD_TAG}'"
                  
              }
          }
