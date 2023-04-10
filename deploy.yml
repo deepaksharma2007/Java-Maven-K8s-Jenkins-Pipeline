@@ -18,6 +18,10 @@ spec:
       - image: deepak2007/auto-java-tomcat-jenkins:${BUILD_TAG}
         imagePullPolicy: Always
         name: myweb
+      env:
+        - name: BUILD_TAG
+          value: "v1"
+      command: [ "sh", "-c", "echo $BUILD_TAG" ]
 
 ---
 apiVersion: v1
