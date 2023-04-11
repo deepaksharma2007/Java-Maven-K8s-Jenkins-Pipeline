@@ -79,7 +79,7 @@ pipeline {
              }
          }
     }
-
+    }
      post {
          always {
              echo "You can always see me"
